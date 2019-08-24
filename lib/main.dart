@@ -28,15 +28,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -44,68 +35,177 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+  final planetCard = new Container(
+    height: 112,
+    margin: EdgeInsets.only(
+      left: 32,
+      right: 32,
+    ),
+    child: Stack(children: [
+      Container(
+        decoration: new BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.rectangle,
+          borderRadius: new BorderRadius.circular(8.0),
+          boxShadow: <BoxShadow>[
+            new BoxShadow(
+              color: new Color(0xFF557289),
+              blurRadius: 5.0,
+              offset: new Offset(0.0, 5.0),
             ),
           ],
         ),
+        height: 80,
+        child: Container(
+          margin: EdgeInsets.only(left: 32, right: 32, bottom: 8),
+          child: TextField(
+            textAlign: TextAlign.center,
+            decoration: InputDecoration(
+                labelStyle: new TextStyle(color: const Color(0xFF424242)),
+                hintText: 'Nick'),
+          ),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      Center(
+        child: Container(
+          margin: EdgeInsets.only(top: 48),
+          child: Image(
+            image: AssetImage("res/img/next_step.png"),
+          ),
+          width: 54.0,
+          height: 54.0,
+          decoration: new BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.rectangle,
+            borderRadius: new BorderRadius.circular(90),
+            boxShadow: <BoxShadow>[
+              new BoxShadow(
+                color: new Color(0xFF557289),
+                blurRadius: 1.0,
+                offset: new Offset(0.0, 7.0),
+              ),
+            ],
+          ),
+        ),
+      )
+
+//        Positioned.fill(
+////            top: 40,
+//            child: Row(
+//              mainAxisAlignment: MainAxisAlignment.center,
+//              children: <Widget>[
+//                Container(
+//                  child: Image(
+//                    image: AssetImage("res/img/next_step.png"),
+//                  ),
+//                  width: 54.0,
+//                  height: 54.0,
+//                  decoration: new BoxDecoration(
+//                    color: Colors.white,
+//                    shape: BoxShape.rectangle,
+//                    borderRadius: new BorderRadius.circular(90),
+//                  ),
+//                )
+//              ],
+//            ))
+    ]),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFF2b385c),
+      body: Stack(
+        children: <Widget>[
+          background(),
+          Container(
+              child: Stack(
+            children: <Widget>[
+//
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                      margin: EdgeInsets.only(top: 64),
+                      child: Text(
+                        "Qweer",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 48,
+                          color: Colors.white,
+                        ),
+                      )),
+                ],
+              ),
+
+              new Column(
+                children: <Widget>[
+                  new Flexible(
+                    child: new Container(),
+                    flex: 2,
+                  ),
+                  new Flexible(
+                    child: Container(
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  "Sign in",
+                                  style: TextStyle(color: Colors.white,fontSize: 32),
+                                ),
+                                margin: EdgeInsets.only(left: 32,bottom: 8),
+                              )
+                            ],
+                          ),
+                          planetCard
+                        ],
+                      ),
+                    ),
+                    flex: 1,
+                  )
+                ],
+              ),
+            ],
+          )),
+        ],
+      ),
+    );
+  }
+
+  Column background() {
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: Container(
+            child: Wrap(
+              alignment: WrapAlignment.end,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: <Widget>[
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Container(
+                      child: Image(
+                        image: AssetImage("res/img/background_img.png"),
+                      ),
+                      margin: EdgeInsets.only(top: 54, bottom: 0),
+                    ),
+                    new Container(
+                      margin: EdgeInsets.only(top: 0),
+                      height: 300,
+                      color: Color(0xFF6A8FAB),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
