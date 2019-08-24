@@ -35,60 +35,62 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final planetCard = new Container(
-    height: 112,
-    margin: EdgeInsets.only(
-      left: 32,
-      right: 32,
-    ),
-    child: Stack(children: [
-      Container(
-        decoration: new BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.rectangle,
-          borderRadius: new BorderRadius.circular(8.0),
-          boxShadow: <BoxShadow>[
-            new BoxShadow(
-              color: new Color(0xFF557289),
-              blurRadius: 5.0,
-              offset: new Offset(0.0, 5.0),
-            ),
-          ],
-        ),
-        height: 80,
-        child: Container(
-          margin: EdgeInsets.only(left: 32, right: 32, bottom: 8),
-          child: TextField(
-            textAlign: TextAlign.center,
-            decoration: InputDecoration(
-                labelStyle: new TextStyle(color: const Color(0xFF424242)),
-                hintText: 'Nick'),
-          ),
-        ),
+  @override
+  Widget build(BuildContext context) {
+    final planetCard = new Container(
+      height: 112,
+      margin: EdgeInsets.only(
+        left: 32,
+        right: 32,
       ),
-
-      Center(
-        child: Container(
-          margin: EdgeInsets.only(top: 48),
-          child: Image(
-            image: AssetImage("res/img/next_step.png"),
-          ),
-          width: 54.0,
-          height: 54.0,
+      child: Stack(children: [
+        Container(
           decoration: new BoxDecoration(
             color: Colors.white,
             shape: BoxShape.rectangle,
-            borderRadius: new BorderRadius.circular(90),
+            borderRadius: new BorderRadius.circular(8.0),
             boxShadow: <BoxShadow>[
               new BoxShadow(
                 color: new Color(0xFF557289),
-                blurRadius: 1.0,
-                offset: new Offset(0.0, 7.0),
+                blurRadius: 5.0,
+                offset: new Offset(0.0, 5.0),
               ),
             ],
           ),
+          height: 80,
+          child: Container(
+            margin: EdgeInsets.only(left: 32, right: 32, bottom: 8),
+            child: TextField(
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                  labelStyle: new TextStyle(color: const Color(0xFF424242)),
+                  hintText: 'Nick'),
+            ),
+          ),
         ),
-      )
+
+        Center(
+          child: Container(
+            margin: EdgeInsets.only(top: 48),
+            child: Image(
+              image: AssetImage("res/img/next_step.png"),
+            ),
+            width: 54.0,
+            height: 54.0,
+            decoration: new BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: new BorderRadius.circular(90),
+              boxShadow: <BoxShadow>[
+                new BoxShadow(
+                  color: new Color(0xFF557289),
+                  blurRadius: 1.0,
+                  offset: new Offset(0.0, 7.0),
+                ),
+              ],
+            ),
+          ),
+        )
 
 //        Positioned.fill(
 ////            top: 40,
@@ -109,11 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //                )
 //              ],
 //            ))
-    ]),
-  );
+      ]),
+    );
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF2b385c),
       body: Stack(
@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   new Flexible(
                     child: Container(
-                      child: Column(
+                      child: ListView(
                         children: <Widget>[
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -155,9 +155,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               Container(
                                 child: Text(
                                   "Sign in",
-                                  style: TextStyle(color: Colors.white,fontSize: 32),
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 32),
                                 ),
-                                margin: EdgeInsets.only(left: 32,bottom: 8),
+                                margin: EdgeInsets.only(left: 32, bottom: 8),
                               )
                             ],
                           ),
