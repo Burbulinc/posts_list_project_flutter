@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:posts_list_project/redux/app_state.dart';
+import 'package:posts_list_project/redux/general_posts/posts_actions.dart';
 import 'package:posts_list_project/screens/posts/posts_viewmodel.dart';
 
 class PostsScreen extends StatefulWidget {
@@ -33,7 +34,9 @@ class _PostsPageState extends State<PostsScreen> {
           ),
           StoreConnector<AppState, GeneralPostsViewModel>(
             converter: (store) => GeneralPostsViewModel.fromStore(store),
-            onInit: (store) {},
+            onInit: (store) {
+              store.dispatch(LoadPosts());
+            },
             builder: (_, viewModel) {
               return Container(
                 margin: EdgeInsets.only(bottom: 16),

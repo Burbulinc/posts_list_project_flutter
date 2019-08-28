@@ -6,6 +6,7 @@ import 'package:redux/redux.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_state.dart';
+import 'middleware/rest_middleware.dart';
 
 Future<Store<AppState>> createStore() async {
   var prefs = await SharedPreferences.getInstance();
@@ -18,7 +19,7 @@ Future<Store<AppState>> createStore() async {
 //      ValidationMiddleware(),
 //      SocialsMiddleware(restClient),
 //      LocalStorageMiddleware(),
-//      RestMiddleware(restClient),
+      RestMiddleware(restClient),
 //      PreparationDateMiddleware(),
 //      NavigationMiddleware(),
     ],
