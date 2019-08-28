@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:posts_list_project/redux/app_state.dart';
+import 'package:posts_list_project/screens/posts/posts_viewmodel.dart';
 
 class PostsScreen extends StatefulWidget {
   PostsScreen({Key key}) : super(key: key);
@@ -15,7 +18,6 @@ class _PostsPageState extends State<PostsScreen> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          //  background(),
           Container(
             decoration: BoxDecoration(
               gradient: new LinearGradient(
@@ -29,22 +31,26 @@ class _PostsPageState extends State<PostsScreen> {
                   tileMode: TileMode.clamp),
             ),
           ),
-
-          Container(
-            margin: EdgeInsets.only(bottom: 16),
-            child: ListView(
-              children: <Widget>[
-                buildItem(),
-                buildItem(),
-                buildItem(),
-                Container(
-                  margin: EdgeInsets.only(bottom: 32),
-                  child: buildItem(),
+          StoreConnector<AppState, GeneralPostsViewModel>(
+            converter: (store) => GeneralPostsViewModel.fromStore(store),
+            onInit: (store) {},
+            builder: (_, viewModel) {
+              return Container(
+                margin: EdgeInsets.only(bottom: 16),
+                child: ListView(
+                  children: <Widget>[
+                    buildItem(),
+                    buildItem(),
+                    buildItem(),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 32),
+                      child: buildItem(),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           ),
-          Divider()
         ],
       ),
     );
@@ -82,7 +88,11 @@ class _PostsPageState extends State<PostsScreen> {
                       children: [
                         Container(
                           margin: EdgeInsets.only(left: 16, top: 16),
-                          child: Text("First line post..",style: TextStyle(fontSize: 16,color:Color(0xFF2b385c) ),),
+                          child: Text(
+                            "First line post..",
+                            style: TextStyle(
+                                fontSize: 16, color: Color(0xFF2b385c)),
+                          ),
                         ),
                         Divider(),
                         Row(
@@ -91,7 +101,8 @@ class _PostsPageState extends State<PostsScreen> {
                               margin: EdgeInsets.only(left: 16, bottom: 16),
                               child: Text(
                                 "Author: Dmitro",
-                                style: TextStyle(color: Color(0xFF2b385c),fontSize: 13),
+                                style: TextStyle(
+                                    color: Color(0xFF2b385c), fontSize: 13),
                               ),
                             ),
                             Container(
