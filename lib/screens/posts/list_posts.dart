@@ -40,17 +40,12 @@ class _PostsPageState extends State<PostsScreen> {
             builder: (_, viewModel) {
               return Container(
                 margin: EdgeInsets.only(bottom: 16),
-                child: ListView(
-                  children: <Widget>[
-                    buildItem(),
-                    buildItem(),
-                    buildItem(),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 32),
-                      child: buildItem(),
-                    ),
-                  ],
-                ),
+                child: ListView.builder(
+                    itemCount: viewModel.list.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return buildItem(viewModel.list[index].text,
+                          viewModel.list[index].userName);
+                    }),
               );
             },
           ),
@@ -59,7 +54,7 @@ class _PostsPageState extends State<PostsScreen> {
     );
   }
 
-  Container buildItem() {
+  Container buildItem(String post, String author) {
     return Container(
       margin: EdgeInsets.only(top: 4, bottom: 6, left: 24, right: 24),
       decoration: new BoxDecoration(
@@ -92,7 +87,7 @@ class _PostsPageState extends State<PostsScreen> {
                         Container(
                           margin: EdgeInsets.only(left: 16, top: 16),
                           child: Text(
-                            "First line post..",
+                            post,
                             style: TextStyle(
                                 fontSize: 16, color: Color(0xFF2b385c)),
                           ),
@@ -103,7 +98,7 @@ class _PostsPageState extends State<PostsScreen> {
                             Container(
                               margin: EdgeInsets.only(left: 16, bottom: 16),
                               child: Text(
-                                "Author: Dmitro",
+                                "Author: $author",
                                 style: TextStyle(
                                     color: Color(0xFF2b385c), fontSize: 13),
                               ),

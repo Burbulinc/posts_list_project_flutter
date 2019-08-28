@@ -18,7 +18,9 @@ class RestMiddleware extends MiddlewareClass<AppState> {
     next(action);
 
     if (action is LoadPosts) {
-      _postsRepository.getGeneralPosts(success: (result) {});
+      _postsRepository.getGeneralPosts(success: (result) {
+        store.dispatch(LoadedPosts(result.reversed.toList()));
+      });
     }
   }
 }

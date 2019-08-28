@@ -12,6 +12,7 @@ class PostsRepository {
       {Function(List<PostDto>) success, Function(Error) error}) {
     restClient.get('/posts', successList: (json) {
       print("");
+      success(postsMapToList(json));
     }, error: (err) {
       print("");
 
