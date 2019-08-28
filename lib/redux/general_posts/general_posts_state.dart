@@ -1,4 +1,4 @@
-import 'package:posts_list_project/data/post_dto.dart';
+import 'package:posts_list_project/data/dto/post_dto.dart';
 
 class GeneralPostsState {
   List<PostDto> posts;
